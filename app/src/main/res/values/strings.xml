@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mercado Pago</string>
+    <string name="lbl_amount">Monto</string>
+    <string name="lbl_payment_method">Método de Pago</string>
+    <string name="lbl_bank_selection">Selección de Banco</string>
+    <string name="lbl_installments_selection">Selección de Cuotas</string>
+</resources>
