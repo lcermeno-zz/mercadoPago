@@ -8,13 +8,21 @@ import blog.qiubo.mercadopago.events.StepEvent
 import blog.qiubo.mercadopago.presenters.interfaces.IMainPresenter
 import blog.qiubo.mercadopago.ui.views.IMainView
 import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * Created by Lawrence Cermeño on 05/08/18.
  */
 class MainPresenter(var mView: IMainView?) : IMainPresenter {
 
+    override fun onCreate() {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
     override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
         mView = null
     }
 
@@ -45,5 +53,21 @@ class MainPresenter(var mView: IMainView?) : IMainPresenter {
         val currentStep = nextStep - 1
         val event = StepEvent().apply { mCode = currentStep }
         EventBus.getDefault().post(event)
+    }
+
+    @Subscribe
+    fun onStepEvents(event: StepEvent) {
+        when (event.mCode) {
+            Constants.STEP_FINISH -> {
+                mView?.setCurrentPage(Constants.FIRST_POSITION)
+                val finalMessage = """
+                    Monto: ${event.mAmount}
+                    Banco: ${event.mBankDTO?.mName}
+                    Método de Pago: ${event.mPaymentMethodDTO?.mName}
+                    Cuotas: ${event.mInstallments}
+                """.trimIndent()
+                mView?.showDialog(finalMessage)
+            }
+        }
     }
 }

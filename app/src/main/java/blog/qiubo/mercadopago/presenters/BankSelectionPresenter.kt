@@ -82,6 +82,7 @@ class BankSelectionPresenter(var mView: IBankSelectionView?) : IBankSelectionPre
         }
     }
 
+
     @Subscribe
     fun onPaymentMethodEvents(event: PaymentEvent) {
         mPaymentMethodDTO = event.mPaymentMethodDTO
@@ -97,6 +98,22 @@ class BankSelectionPresenter(var mView: IBankSelectionView?) : IBankSelectionPre
                     EventBus.getDefault().post(event)
                 }
             }
+            Constants.STEP_FINISH -> {
+                clearCurrentSelection()
+            }
+        }
+    }
+
+    private fun clearCurrentSelection() {
+        val currentItems = mView?.getItems()
+        currentItems?.let { items ->
+            mBankSelected?.let {
+                it.mSelected = false
+                val index = items.indexOf(it)
+                mView?.update(index)
+            }
+            mBankSelected = null
+            mView?.setItems(null)
         }
     }
 }

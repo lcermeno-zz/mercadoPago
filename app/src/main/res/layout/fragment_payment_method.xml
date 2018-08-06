@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standard_margin"
-        android:text="@string/lbl_bank_selection_title"
+        android:text="@string/lbl_payment_method_selection"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/font_size_medium"
         app:layout_constraintEnd_toEndOf="parent"

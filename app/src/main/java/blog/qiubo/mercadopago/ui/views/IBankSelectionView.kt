@@ -7,4 +7,5 @@ import blog.qiubo.mercadopago.ui.viewmodels.BankVM
  */
 interface IBankSelectionView: IPaymentDetailView, IUpdate, IShowProgress, IShowMessage {
     fun setItems(vms: List<BankVM>?)
+    fun getItems(): List<BankVM>?
 }

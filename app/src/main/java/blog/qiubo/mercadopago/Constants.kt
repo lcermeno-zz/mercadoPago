@@ -42,4 +42,5 @@ object Constants {
     const val STEP_PAYMENT_METHOD = 1
     const val STEP_BANK = 2
     const val STEP_INSTALLMENTS = 3
+    const val STEP_FINISH = 4
 }

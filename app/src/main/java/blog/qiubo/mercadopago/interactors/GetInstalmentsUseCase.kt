@@ -24,7 +24,7 @@ class GetInstalmentsUseCase : BaseUseCase<InstallmentEvent>() {
                             mCallback?.onError(
                                     InstallmentEvent()
                                             .apply {
-                                                mMessage = "Ha ocurrido un error obteniendo los métodos de pagos"
+                                                mMessage = "Ha ocurrido un error obteniendo las cuotas"
                                             }
                             )
                         }

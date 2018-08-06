@@ -31,7 +31,9 @@ class AmountPresenter(var mView: IAmountView?) : IAmountPresenter {
                 val amount: Float = if (amountTxt.isEmpty()) 0f else amountTxt.toFloat()
                 val event = AmountEvent().apply { mAmount = amount }
                 EventBus.getDefault().post(event)
+                mView?.hideKeyboard()
             }
+            Constants.STEP_FINISH -> mView?.clear()
         }
     }
 }

@@ -57,6 +57,8 @@ class BankSelectionFragment: Fragment(), IBankSelectionView, BankAdapter.IOnClic
                     .getString(R.string.lbl_bank_selection)
 
 
+    override fun getItems(): List<BankVM>? = mAdapter.mItems
+
     override fun setItems(vms: List<BankVM>?) {
         runOnUiThread {
             mAdapter.mItems = vms

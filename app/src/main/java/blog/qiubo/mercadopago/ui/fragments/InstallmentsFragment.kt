@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_installments.*
 /**
  * Created by Lawrence Cermeño on 04/08/18.
  */
-class InstallmentsFragment: Fragment(), IInstallmentsView, InstallmentAdapter.IOnClickListener {
+class InstallmentsFragment : Fragment(), IInstallmentsView, InstallmentAdapter.IOnClickListener {
 
     private val mPresenter = InstallmentsPresenter(this)
     private val mAdapter = InstallmentAdapter(this)
@@ -65,7 +65,7 @@ class InstallmentsFragment: Fragment(), IInstallmentsView, InstallmentAdapter.IO
     }
 
     override fun showProgress(show: Boolean) {
-        runOnUiThread {   refresh_installments.isRefreshing = show}
+        runOnUiThread { refresh_installments.isRefreshing = show }
     }
 
     override fun showMessage(message: String) {
@@ -80,4 +80,6 @@ class InstallmentsFragment: Fragment(), IInstallmentsView, InstallmentAdapter.IO
             mAdapter.notifyDataSetChanged()
         }
     }
+
+    override fun getItems(): List<InstallmentVM>? = mAdapter.mItems
 }

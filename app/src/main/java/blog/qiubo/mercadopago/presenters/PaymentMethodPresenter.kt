@@ -92,6 +92,21 @@ class PaymentMethodPresenter(var mView: IPaymentMethodView?) : IPaymentMethodsPr
                     EventBus.getDefault().post(event)
                 }
             }
+            Constants.STEP_FINISH -> {
+                clearCurrentSelection()
+            }
+        }
+    }
+
+    private fun clearCurrentSelection() {
+        val currentItems = mView?.getItems()
+        currentItems?.let { items ->
+            mPaymentMethodSelected?.let {
+                it.mSelected = false
+                val index = items.indexOf(it)
+                mView?.update(index)
+            }
+            mPaymentMethodSelected = null
         }
     }
 }

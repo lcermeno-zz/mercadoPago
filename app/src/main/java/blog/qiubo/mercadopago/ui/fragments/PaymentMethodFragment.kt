@@ -69,6 +69,8 @@ class PaymentMethodFragment : Fragment(), IPaymentMethodView, PaymentMethodAdapt
         }
     }
 
+    override fun getItems(): List<PaymentMethodVM>? = mAdapter.mItems
+
     override fun setItems(vms: List<PaymentMethodVM>?) {
         runOnUiThread {
             mAdapter.mItems = vms

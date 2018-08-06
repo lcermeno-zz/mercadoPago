@@ -6,4 +6,6 @@ package blog.qiubo.mercadopago.ui.views
 interface IMainView {
     fun setPrevButtonVisibility(visibility: Int)
     fun setNextLabel(label: Int)
+    fun setCurrentPage(position: Int)
+    fun showDialog(finalMessage: String)
 }

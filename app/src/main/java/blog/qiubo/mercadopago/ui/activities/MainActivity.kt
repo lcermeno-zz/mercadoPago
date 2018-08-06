@@ -2,6 +2,7 @@ package blog.qiubo.mercadopago.ui.activities
 
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import blog.qiubo.mercadopago.Constants
 import blog.qiubo.mercadopago.R
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), IMainView {
     private fun setupModule() {
         setupViewPager()
         setupButtons()
+        mPresenter.onCreate()
     }
 
     private fun setupButtons() {
@@ -36,8 +38,8 @@ class MainActivity : AppCompatActivity(), IMainView {
             val index = vw_pager.currentItem + 1
             if (index < mAdapter.count) {
                 vw_pager.currentItem = index
-                mPresenter.notifyNext(index)
             }
+            mPresenter.notifyNext(index)
         }
 
         btn_prev.setOnClickListener {
@@ -72,5 +74,20 @@ class MainActivity : AppCompatActivity(), IMainView {
 
     override fun setNextLabel(label: Int) {
         btn_next.setText(label)
+    }
+
+    override fun setCurrentPage(position: Int) {
+        runOnUiThread {
+            vw_pager.setCurrentItem(position, false)
+        }
+    }
+
+    override fun showDialog(finalMessage: String) {
+        runOnUiThread {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage(finalMessage)
+            val dialog = builder.create()
+            dialog.show()
+        }
     }
 }

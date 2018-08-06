@@ -24,7 +24,7 @@ class GetBanksUseCase:  BaseUseCase<BankEvent>() {
                             mCallback?.onError(
                                     BankEvent()
                                             .apply {
-                                                mMessage = "Ha ocurrido un error obteniendo los métodos de pagos"
+                                                mMessage = "Ha ocurrido un error obteniendo los bancos"
                                             }
                             )
                         }

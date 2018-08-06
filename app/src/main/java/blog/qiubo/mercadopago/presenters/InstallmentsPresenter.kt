@@ -23,7 +23,6 @@ class InstallmentsPresenter(var mView: IInstallmentsView?) : IInstallmentsPresen
     private var mAmount: Float? = null
     private var mPaymentMethodDTO: PaymentMethodDTO? = null
     private var mBankDTO: BankDTO? = null
-    private var mInstallmentDTO: InstallmentDTO? = null
 
     override fun onCreate() {
         if (!EventBus.getDefault().isRegistered(this)) {
@@ -111,11 +110,38 @@ class InstallmentsPresenter(var mView: IInstallmentsView?) : IInstallmentsPresen
     fun onStepEvent(event: StepEvent) {
         when (event.mCode) {
             Constants.STEP_INSTALLMENTS -> {
-                mInstallmentSelected?.mInstallmentDTO?.let {
-                    val event = InstallmentEvent().apply { mInstallmentDTO = it }
+                mInstallmentSelected?.mRecommendedMessage?.let {
+                    val event = StepEvent()
+                            .apply {
+                                mAmount = this@InstallmentsPresenter.mAmount
+                                mBankDTO = this@InstallmentsPresenter.mBankDTO
+                                mPaymentMethodDTO = this@InstallmentsPresenter.mPaymentMethodDTO
+                                mInstallments = it
+                                mCode = Constants.STEP_FINISH
+
+                            }
                     EventBus.getDefault().post(event)
                 }
             }
+            Constants.STEP_FINISH -> {
+                clearCurrentSelection()
+            }
+        }
+    }
+
+    private fun clearCurrentSelection() {
+        val currentItems = mView?.getItems()
+        currentItems?.let { items ->
+            mInstallmentSelected?.let {
+                it.mSelected = false
+                val index = items.indexOf(it)
+                mView?.update(index)
+            }
+            mAmount = null
+            mBankDTO = null
+            mPaymentMethodDTO = null
+            mInstallmentSelected = null
+            mView?.setItems(null)
         }
     }
 }

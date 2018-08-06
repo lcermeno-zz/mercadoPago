@@ -7,4 +7,5 @@ import blog.qiubo.mercadopago.ui.viewmodels.InstallmentVM
  */
 interface IInstallmentsView: IPaymentDetailView, IUpdate, IShowProgress, IShowMessage {
     fun setItems(vms: List<InstallmentVM>?)
+    fun getItems(): List<InstallmentVM>?
 }
