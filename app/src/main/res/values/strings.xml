@@ -4,4 +4,12 @@
     <string name="lbl_payment_method">Método de Pago</string>
     <string name="lbl_bank_selection">Selección de Banco</string>
     <string name="lbl_installments_selection">Selección de Cuotas</string>
+    <string name="btn_prev">Regresar</string>
+    <string name="btn_next">Siguiente</string>
+    <string name="btn_finish">Finalizar</string>
+    <string name="lbl_amount_placeholder">0</string>
+    <string name="lbl_amount_currency_symbol">$</string>
+    <string name="lbl_amount_description">Ingrese el monto del pago</string>
+    <string name="lbl_payment_method_selection">Selecciones el método de pago</string>
+    <string name="lbl_bank_selection_title">Seleccione su Banco</string>
 </resources>

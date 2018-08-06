@@ -29,9 +29,13 @@ android {
 
     productFlavors {
         envDev {
-            buildConfigField("String", "API_URL", '"http://167.99.107.79/"')
-            buildConfigField("String", "API_KEY", '"444a9ef5-8a6b-429f-abdf-587639155d88."')
+            buildConfigField("String", "API_URL", '"https://api.mercadopago.com/"')
+            buildConfigField("String", "API_KEY", '"444a9ef5-8a6b-429f-abdf-587639155d88"')
         }
+    }
+
+    androidExtensions {
+        experimental = true
     }
 }
 
@@ -56,6 +60,23 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.loggingInterceptorVersion"
+
+    // rx java
+
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxKotlinVersion"
+
+    // Glide
+
+    implementation("com.github.bumptech.glide:glide:$rootProject.ext.glideVersion") {
+        exclude group: "com.android.support"
+    }
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
+
+    // event bus
+
+    implementation "org.greenrobot:eventbus:$rootProject.ext.eventBusVersion"
 
     // test
 

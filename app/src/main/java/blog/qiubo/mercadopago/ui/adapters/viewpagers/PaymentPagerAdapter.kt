@@ -1,4 +1,4 @@
-package blog.qiubo.mercadopago.ui.adapters
+package blog.qiubo.mercadopago.ui.adapters.viewpagers
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
